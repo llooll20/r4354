@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+	int T, R, i, j,k=0,m=0;
+	char S[20], P[160];
+
+	scanf("%d",&T);
+	for (i = 0; i < T; i++)
+	{
+		m = 0;
+		scanf("%d %s",&R,S);
+		for (j = 0; j < strlen(S); j++)//정상
+		{
+			for (k = 0; k < R; k++)
+			{
+				P[m] = S[j];
+				m++;
+			}
+		}
+		for (j = 0; j < R*strlen(S); j++)
+		{
+			printf("%c", P[j]);
+		}
+		printf("\n");
+	}
+}
