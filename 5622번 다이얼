@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include<string.h>
+int clo(int a)//문자를 초로 계산
+{
+
+	if (a <= 67)
+		return 3;
+	else if (a <= 70)
+		return 4;
+	else if (a <= 73)
+		return 5;
+	else if (a <= 76)
+		return 6;
+	else if (a <= 79)
+		return 7;
+	else if (a <= 83)
+		return 8;
+	else if (a <= 86)
+		return 9;
+	else
+		return 10;
+}
+int main(void)
+{
+	char string[16];
+	int arr[10];
+	int i,j, n,sum=0,temp;
+	scanf("%s",string);
+	n = strlen(string);
+	for (i = 0; i < n - 1; i++)
+	{
+		if (string[i] > string[i + 1])
+		{
+			temp = string[i];
+			string[i] = string[i + 1];
+			string[i + 1] = temp;
+		}
+	}
+	for (i = 0; i < n; i++)
+	{
+		temp = string[i];
+		sum += clo(temp) ;
+	}
+	
+	printf("%d",sum);
+}
