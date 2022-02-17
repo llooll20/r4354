@@ -1,0 +1,19 @@
+#include <stdio.h>
+int main(void)
+{
+        int W,H,a,temp,i,n;
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+                scanf("%d %d %d",&H,&W,&a);
+                if(a%H==0)
+                        printf("%d",H);
+                else
+                         printf("%d",a%H);
+                if((a-1)/H+1<10)
+                        printf("%d",0);
+                printf("%d\n",(a-1)/H+1);
+        }
+        return 0;
+
+}
