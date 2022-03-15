@@ -1,0 +1,56 @@
+#include <stdio.h>
+int main(void)
+{
+        int N,M,i,j,min=100,k,r,cntw,cntb,temp,a,b;
+        scanf("%d %d",&M,&N);
+        char string [M][N];
+        for(i=0;i<M+1;i++)
+        {
+                for(j=0;j<N;j++)
+                {
+                        scanf("%c",&string[i][j]);
+                }
+        }
+        a=M-7;
+        b=N-7;
+        for(i=0;i<M-7;i++)
+        {
+                for(j=0;j<N-7;j++)
+                {
+                        cntw=0;
+                        cntb=0;
+                        for(k=i;k<i+8;k++)
+                                for(r=j;r<j+8;r++)
+                                {
+                                        if((k+r)%2==0)
+                                        {
+                                                if(string[k][r]!='B')
+                                                        cntw++;
+                                                else
+                                                        cntb++;
+                                        }
+                                        else
+                                        {
+                                                if(string[k][r]!='B')
+                                                        cntb++;
+                                                else
+                                                        cntw++;
+                                        }
+                                }
+                        if(cntw>=cntb)
+                        {
+                                temp=cntb;
+                        }
+                        else
+                        {
+                                temp=cntw;
+                        }
+                        if(temp<min)
+                        {
+                                min=temp;
+                        }
+                }
+        }
+        printf("%d",min);
+}
+                             
