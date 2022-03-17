@@ -1,0 +1,35 @@
+#include <stdio.h>
+int dvide(int a,int b)
+{
+        int temp=a;
+        if(a%10==0)
+        {
+                return 10;
+        }
+        if(b==1)
+        {
+                a%=10;
+                if(a==0)
+                        return 10;
+                else
+                        return a;
+        }
+        
+        while(b>1)
+        {       
+                temp=(temp*a)%10;
+                b--;
+        }
+        return temp;
+}
+int main(void)
+{       
+        int a,b,n,i;
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+                scanf("%d %d",&a,&b);
+                printf("%d\n",dvide(a,b));
+        }
+        return 0;
+}
