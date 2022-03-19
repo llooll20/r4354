@@ -1,0 +1,17 @@
+#include <stdio.h>
+int main(void)
+{
+        int hour,min,input,result;
+        scanf("%d %d",&hour,&min);
+        scanf("%d",&input);
+
+        min+=input;
+        while(min>59)
+        {
+                min-=60;
+                hour++;
+        }
+        if(hour>23)
+                hour-=24;
+        printf("%d %d",hour,min);
+}
