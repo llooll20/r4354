@@ -1,1 +1,35 @@
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+        int n,i,len;
+        char arr[101];
+        scanf("%d",&n);
+        int count=n;
+        for(i=0;i<n;i++)
+        {
+                scanf("%s",arr);
+                len=strlen(arr);
+                char first='0';
+                int alp[26]={0, };
+                for(j=0;arr[j]!='\0';j++)
+                {
+                        if(first !=arr[j])
+                        {
+                                first=arr[j];
+                                alp[arr[j]-'a']+=1;
+                        }
+                        if(alp[arr[j]-'a']==2)
+                        {
+                                count-=1;
+                                break;
+                        }
+
+                }
+                
+        }
+        printf("%d",count);
+        return 0; 
+
+}
 
