@@ -1,0 +1,25 @@
+#include <stdio.h>
+int main(void)
+{
+        int n,num,i,j,pen;
+        scanf("%d",&n);
+        int count=n;
+        for(i=0;i<n;i++)
+        {
+                pen=0;
+                scanf("%d",&num);
+                if(num==1)
+                {
+                        count--;
+                }
+                for(j=1;j<num;j++)
+                {       
+                        if(num%j==0)
+                                pen++;
+                }
+                if(pen>1)
+                        count--;
+
+        }
+        printf("%d",count);
+}
