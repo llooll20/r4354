@@ -1,0 +1,29 @@
+#include <stdio.h>
+typedef struct point{
+        int xpo;
+        int ypo;
+}Point;
+int other(int a,int b,int c)
+{
+        if(a==b)
+                return c;
+        else if(a==c)
+                return b;
+        else
+                return a;
+
+}
+int main(void)
+{
+        Point p1,p2,p3,p4;
+        int i,temp;
+        scanf("%d %d",&p1.xpo,&p1.ypo);
+        scanf("%d %d",&p2.xpo,&p2.ypo);
+        scanf("%d %d",&p3.xpo,&p3.ypo);
+
+        p4.xpo=other(p1.xpo,p2.xpo,p3.xpo);
+        p4.ypo=other(p1.ypo,p2.ypo,p3.ypo);
+
+        printf("%d %d",p4.xpo,p4.ypo);
+        return 0;
+}
