@@ -1,1 +1,25 @@
+#include <stdio.h>
+int main(void)
+{
+        int x,y,w,h,tempx,tempy;
+        float mw,mh;
+        scanf("%d %d %d %d",&x,&y,&w,&h);
+        mw=(float)w/2;
+        mh=(float)h/2;
+        if(x>mw)
+                tempx=w-x;
+        else
+                tempx=x;
+        if(y>mh)
+                tempy=h-y;
+        else
+                tempy=y;
+        if(tempy>=tempx)
+                printf("%d",tempx);
+        else
+                printf("%d",tempy);
+        return 0;
+
+
+}
 
