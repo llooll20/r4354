@@ -1,0 +1,25 @@
+#include <stdio.h>
+#include <math.h>
+#define _USE_MATH_DEFINES
+double uc(int n) //유클리드 기하학 원
+{
+        double result;
+        result=M_PI*n*n;
+        return result;
+
+}
+double taxi(int n)//택시 기하학 원
+{
+        double result;
+        result=2*n*n;
+        return result;
+}
+int main(void)
+{
+        int r;
+        scanf("%d",&r);
+        printf("%lf\n%lf",uc(r),taxi(r));
+        return 0;
+
+
+}
