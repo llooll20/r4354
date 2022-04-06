@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <math.h>
+int main(void)
+{
+        int n,i;
+        double  x1,y1,r1,x2,y2,r2,distance,br,sr;
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+                scanf("%lf %lf %lf %lf %lf %lf",&x1,&y1,&r1,&x2,&y2,&r2);
+                if(r2>r1)
+                {
+                        br=r2;
+                        sr=r1;
+                }
+                else
+                {
+                        br=r1;
+                        sr=r2;
+                }
+                if(x1==x2&&y1==y2&&r1==r2)
+                {
+                        printf("-1\n");
+                        continue;
+                }
+                distance=sqrt(pow(x1-x2,2)+pow(y1-y2,2));
+                if(distance<br+sr && distance>br-sr)
+                        printf("2\n");
+                else if(br+sr==distance || br-sr==distance)
+                        printf("1\n");
+                else
+                        printf("0\n");
+        }
+        return 0;
+}
