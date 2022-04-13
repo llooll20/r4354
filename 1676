@@ -1,0 +1,21 @@
+#include <stdio.h>
+int five(int n){//n에 5가 몇번 곱해져 있냐??
+        int cnt=0;
+        while(n%5==0){
+                n=n/5;
+                cnt++;
+        }
+        return cnt;
+
+}
+int main(void)
+{
+        int num,i,cnt=0;
+        scanf("%d",&num);
+        for(i=1;i<num+1;i++){
+                cnt=cnt+five(i);
+        }
+        printf("%d",cnt);
+        return 0;       
+}
+
