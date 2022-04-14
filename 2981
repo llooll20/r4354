@@ -1,0 +1,40 @@
+#include <stdio.h>
+int gong(int a,int b){//최대 공약수 구하기
+        int c;
+        while(b!=0){
+                c=a%b;
+                a=b;
+                b=c;
+        }
+        return a;
+}
+int main(void)
+{
+        int n,arr[101],temp[100],cnt;
+        int i,j;
+        scanf("%d",&n);
+        for(i=0;i<n;i++){
+                scanf("%d",&arr[i]);
+        }
+        for(i=0;i<n-1;i++){//n -  n-1 값 추출
+                j=arr[i+1]-arr[i];
+                if(j<0){
+                        j=(-1)*j;
+                        temp[i]=j;
+                }
+                else
+                        temp[i]=j;
+        }
+        cnt=gong(temp[0],temp[1]);
+        for(i=2;i<n-2;i++)//최대 공약수 이용
+        {
+                cnt=gong(cnt,temp[i]);
+        }
+        for(i=2;i<=cnt/2;i++){
+                if(cnt%i==0)
+                        printf("%d ",i);
+        }
+        printf("%d",cnt);
+
+        return 0;
+}
