@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <string.h>
+char *body1[100000];
+int catenum=0;
+int max=0;
+int find(char ff[100]){
+        int z;
+        for(z=0;z<max;z++)
+        {
+                if(strcmp(ff,body1[z])==0){
+                        catenum=z;
+                        return 0;
+                }
+        }
+        return -1;
+}
+int main(void)
+{
+        int n,cloth,i;//반복 횟수
+        int cate[100]={0};//해당 카테고리
+        char fan[100],body[100];//옷이름 종류
+        long long result=1;
+        scanf("%d",&n);
+        while(n--){
+                scanf("%d",&cloth);
+                if(cloth==0){
+                        printf("0");
+                        continue;
+                }
+                for(i=0;i<cloth;i++){
+                        scanf("%s %s",fan,body);
+                        if(find(body)==0)
+                        {
+                                cate[catenum]++;
+                        }
+                        else{
+                                body1[max]=strdup(body);
+                                cate[max]++;
+                                max++;
+                        }
+
+                }
+                for(i=0;i<max;i++)
+                {
+                        result=result*(cate[i]+1);
+                }
+
+                printf("%lld\n",result-1);
+        }
+        return 0;
+}
