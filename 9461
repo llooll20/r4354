@@ -1,0 +1,27 @@
+#include <stdio.h>
+long arr[101]={0};
+long padoban(int x){
+        if(arr[x]!=0)
+                return arr[x];
+        else
+        {
+                return arr[x]=padoban(x-1)+padoban(x-5);
+        }
+}
+int main(void)
+{
+        arr[1]=1;
+        arr[2]=1;
+        arr[3]=1;
+        arr[4]=2;
+        arr[5]=2;
+        arr[6]=3;
+
+        int n,a;
+        scanf("%d",&n);
+        while(n--){
+                scanf("%d",&a);
+                printf("%ld\n",padoban(a));
+        }
+        return 0;
+}
