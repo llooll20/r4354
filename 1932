@@ -1,0 +1,48 @@
+#include <stdio.h>
+int max(int a,int b)
+{
+        return a > b ? a : b;
+}
+int main(void)
+{
+        int size, num[200000]={0},dp[200000]={0};
+        int i,scale=0,j=0;//scale은 들어간 수의 개수
+        int big;
+        scanf("%d",&size);
+        for(i=1;i<=size;i++){
+                scale+=i;
+                for(;j<scale;j++)
+                {
+                        if(dp[j]!=0)
+                                continue;
+                        scanf("%d",&num[j]);
+                        if(j==0){
+                                dp[j]=num[j];
+                                continue;
+                        }
+                        if(j+1==scale){
+                                dp[j]=dp[j-i]+num[j];//삼각형 오른모서리 값
+                                if(i<size)
+                                {       
+                                        j=j+1;
+                                        scanf("%d",&num[j]);
+                                        dp[j]=dp[j-i]+num[j];
+                                }
+                        }
+                        else
+                        {
+                                dp[j]=max(dp[j-i],dp[j-i+1])+num[j];
+                        }
+
+                }
+        
+        }
+        big=dp[scale-1];
+        for(i=scale-1;i>scale-size;i--)
+        {
+                if(dp[i]>big)
+                        big=dp[i];
+        }
+        printf("%d\n",big);
+        return 0;
+}
