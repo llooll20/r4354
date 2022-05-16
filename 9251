@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+int max(int a,int b)
+{
+        return a>b ? a:b;
+}
+int main(void)
+{
+        char arr1[1005], arr2[1005];
+        int dp[1005][1005]={0};
+        scanf("%s\n%s",arr1,arr2);
+        int len1=strlen(arr1),len2=strlen(arr2);
+        int i,j;
+        for(i=1;i<=len1;i++)
+                for(j=1;j<=len2;j++)
+                        if(arr1[i-1]==arr2[j-1]){
+                                dp[i][j]=dp[i-1][j-1]+1;
+                        }else   
+                        {
+                                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);
+                        }
+        printf("%d",dp[len1][len2]);
+        return 0;
+
+
+}   
