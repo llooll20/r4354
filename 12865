@@ -1,0 +1,28 @@
+#include <stdio.h>
+#define max(a,b) (a>b?a:b)
+int main(void)
+{
+        int N,K,i,j;
+        int W[110],V[110];
+        int dp[110][100010];
+        scanf("%d %d",&N,&K);
+        for(i=1;i<=N;i++)
+                scanf("%d %d",&W[i],&V[i]);
+        for(i=1;i<=N;i++)
+        {
+                for(j=1;j<=K;j++)//K만큼의 무게를 만들기
+                {
+                        if(j>=W[i])
+                        {
+                                dp[i][j]=max(dp[i-1][j],dp[i-1][j-W[i]]+V[i]);
+                        }
+                        else
+                                dp[i][j]=dp[i-1][j];
+
+
+                }
+
+        }
+        printf("%d",dp[N][K]);
+        return 0;
+}
