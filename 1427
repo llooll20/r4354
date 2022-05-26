@@ -1,0 +1,26 @@
+#include <stdio.h>
+int main(void)
+{
+        char a,len=0,temp,i,j;
+        char arr[11]={0};
+        while(a=getchar())
+        {
+                if(a=='\n')
+                        break;
+                arr[len++]=a;
+        }
+        for(i=len-2;i>=0;i--)
+        {
+                for(j=0;j<=i;j++)
+                {
+                        if(arr[j]<arr[j+1])
+                        {
+                                temp=arr[j];
+                                arr[j]=arr[j+1];
+                                arr[j+1]=temp;
+                        }
+                }
+        }
+        printf("%s",arr);
+        return 0;
+}
