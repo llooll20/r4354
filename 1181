@@ -1,0 +1,49 @@
+#include <string.h>
+#include <stdlib.h>
+typedef struct dan{
+        char name[51];
+        int len;
+}Dan;
+int compare(const void*a,const void*b)
+{
+        int i;
+        Dan num1=*(Dan *)a,num2=*(Dan *)b;
+        if(num1.len>num2.len)
+                return 1;
+        if(num1.len==num2.len)
+        {
+                if(num1.name==num2.name)
+                {
+                        return 0;
+                }
+                for(i=0;i<num1.len;i++)
+                {
+                        if(num1.name[i]>num2.name[i])
+                                return 1;
+                        if(num1.name[i]<num2.name[i])
+                                return -1;
+                }
+        }
+        return 0;
+}
+int main(void)
+{
+        int n,i,j;
+        char* text="A";
+        Dan arr[20001];
+        scanf("%d",&n);
+        for(i=0;i<n;i++)
+        {
+                scanf("%s",arr[i].name);
+                arr[i].len=strlen(arr[i].name);
+        }
+        qsort(arr,n,sizeof(Dan),compare);
+        for(i=0;i<n;i++)
+        {
+                if(strcmp(arr[i].name,text)!=0){
+                        printf("%s\n",arr[i].name);
+                }
+                text=arr[i].name;
+        }
+        return 0;
+}
