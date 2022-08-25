@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define max 51
+
+typedef struct deque{
+	int *data;
+	int rear,front;
+}Deque;
+
+Deque* init_deque()//큐 생성
+{
+	Deque *q=(Deque *)malloc(sizeof(Deque));
+	q->data=(int *)malloc(sizeof(int)*max);
+	q->rear=q->front=0;
+	return q;
+}
+void push_rear(Deque *q,int item)
+{
+	q->rear=(q->rear+1)%max;
+	q->data[q->rear]=item;
+}
+void push_front(Deque *q,int item)
+{
+	q->data[q->front]=item;
+	q->front=(q->front-1+max)%max;
+}
+int pop_rear(Deque *q)
+{
+	int tmp=q->data[q->rear];
+	q->rear=(q->rear-1+max)%max;
+	return tmp;
+}
+int pop_front(Deque *q)
+{
+	int tmp=q->data[q->front];
+	q->front=(q->front+1)%max;
+	return tmp;
+}
+int front(Deque *q)
+{
+	return q->data[q->front];
+}
+int main(void)
+{
+	int n,m,num;//n은 수의 범위, m은 추출하는 수의 개수, num은 추출수
+	int i,cnt=0,scnt;//연산 횟수, snt는 소연산
+	int tmp;
+	Deque *p=init_deque();
+	scanf("%d %d",&n,&m);
+	for(i=0;i<n;i++)
+	{
+		p->data[i]=i+1;
+	}
+	p->front=0;
+	p->rear=n-1;
+	int size=n;
+	for(i=0;i<m;i++)
+	{
+		scanf("%d",&num);
+		scnt=0;
+		while(1)
+		{
+			if(front(p)==num)
+			{
+				pop_front(p);
+				break;
+			}
+			else
+			{
+				tmp=pop_front(p);
+				push_rear(p,tmp);
+				scnt++;
+			}
+		}
+		if(scnt>size/2)
+		{
+			cnt+=size-scnt;
+		}
+		else
+		{
+			cnt+=scnt;
+		}
+		size--;
+	}
+	printf("%d",cnt);
+	return 0;
+}
