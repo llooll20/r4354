@@ -1,0 +1,160 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define max 10
+
+typedef struct decktype{
+	int data[max];//배열
+	int rear,front;//rear은 전진성 삽입을 하는 개체, front는 가장 앞부분
+}Deque;
+
+
+int is_full(Deque *q)
+{
+	if((q->rear+1)%max==q->front)
+	{
+		return 1;
+	}
+	return 0;
+}
+Deque* init_deque()//큐 할당
+{
+	Deque *p=(Deque *)malloc(sizeof(Deque));
+	p->front=0;
+	p->rear=0;
+	return p;
+}
+int empty(Deque *q)//공백 확인
+{
+	if(q->front==q->rear)
+		return 1;
+	else
+		return 0;
+}
+int rear(Deque *q)//rear의 수 추출
+{
+	if(empty(q)==1)
+		return -1;
+	return q->data[q->rear];
+}
+int front(Deque *q)//front의 수 추출
+{
+	if(empty(q)==1)
+		return -1;
+	return q->data[(q->front+1)%max];
+}
+void add_rear(Deque *q,int item)//rear에 요소 추가
+{
+	if(is_full(q)==1)
+	{
+		printf("초과 덱\n");
+		return;
+	}
+	q->rear=(q->rear+1)%max;//환형구조를 위해 %max로 초과시 처음으로 돌아옴
+	q->data[q->rear]=item;
+
+}
+int delete_front(Deque *q)//front 요소 삭제
+{
+	if(empty(q)==1)
+	{
+		return -1;
+	}
+	int tmp=front(q);
+	q->front=(q->front+1)%max;
+	return tmp;
+
+}
+int delete_rear(Deque *q)//rear 요소 삭제
+{
+	if(empty(q)==1)
+	{
+		return -1;
+	}
+	int tmp=rear(q);
+	q->rear=(q->rear-1+max)%max;//-가 되는 경우를 배제하기 위해 +max
+	return tmp;
+}
+void add_front(Deque *q,int item)
+{
+	if(is_full(q)==1)
+	{
+		printf("포화 큐\n");
+		return;
+	}
+	q->data[q->front]=item;
+	q->front=(q->front-1+max)%max;
+}
+int size(Deque *q)
+{
+	return (q->rear-q->front+max)%max;
+}
+int pop_rear(Deque *q)
+{
+	if(empty(q)==1)
+	{
+		return -1;
+	}
+	int temp=rear(q);
+	delete_rear(q);
+	return temp;
+}
+int pop_front(Deque *q)
+{
+	if(empty(q)==1)
+	{
+		return -1;
+	}
+	int temp=front(q);
+	delete_front(q);
+	return temp;
+}
+int main(void)
+{
+	Deque *p=init_deque();
+
+	int n,temp,i;
+	char str[15];
+
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%s",str);
+		if(strcmp(str,"push_back")==0)
+		{
+			scanf("%d",&temp);
+			add_front(p,temp);
+		}
+		else if(strcmp(str,"push_front")==0)
+		{
+			scanf("%d",&temp);
+			add_rear(p,temp);
+		}
+		else if(strcmp(str,"pop_front")==0)
+		{
+			printf("%d\n",pop_rear(p));
+		}
+		else if(strcmp(str,"pop_back")==0)
+		{
+			printf("%d\n",pop_front(p));
+		}
+		else if(strcmp(str,"size")==0)
+		{
+			printf("%d\n",size(p));
+		}
+		else if(strcmp(str,"empty")==0)
+		{
+			printf("%d\n",empty(p));
+		}
+		else if(strcmp(str,"front")==0)
+		{
+			printf("%d\n",rear(p));
+		}
+		if(strcmp(str,"back")==0)
+		{
+			printf("%d\n",front(p));
+		}
+	}
+	free(p);
+	return 0;
+}
