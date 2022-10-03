@@ -1,0 +1,43 @@
+#include <stdio.h>
+typedef long long Long;
+Long cutting(Long arr[],Long num,Long max,Long key)
+{
+        Long s=0,l=max; 
+        Long cnt;   
+        Long mid,i; 
+        while(s<=l) 
+        {
+                cnt=0;
+                mid=(s+l)/2;
+                for(i=0;i<num;i++)
+                {
+                        if(mid>arr[i])
+                        { 
+                                continue;
+                        }
+                        cnt+=(arr[i]-mid);//나무 자름
+                }
+                if(key<=cnt) 
+                {     
+                        s=mid+1;
+                }     
+                else  
+                        l=mid-1;
+        }
+        return l;
+}
+int main(void)
+{
+        Long N,M,temp,i,big=0;
+        Long namu[1000001];
+        scanf("%lld %lld",&N,&M);
+        for(i=0;i<N;i++)
+        {
+                scanf("%lld",&temp);
+                if(big<temp)
+                        big=temp;
+                namu[i]=temp;
+        }
+        printf("%lld",cutting(namu,N,big,M));
+        return 0;
+}
