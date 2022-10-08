@@ -1,0 +1,33 @@
+#include <stdio.h>
+int main(void)
+{
+        int N,K;
+        scanf("%d %d",&N,&K);
+
+        int mid,s=1,l=K;//절대로 K보다 큰 값이 나올수 없다.
+        int cnt,temp,i,result;
+        while(s<=l)
+        {
+                temp=0;
+                cnt=0;
+                mid=(s+l)/2;
+                for(i=1;i<=N;i++)
+                {
+                        temp=(mid/i);
+                        if(temp>N)
+                                temp=N;
+                        cnt+=temp;
+                }
+                if(cnt>=K)
+                {
+                        result=mid;
+                        l=mid-1;
+                }
+                else
+                {
+                        s=mid+1;
+                }
+        }
+        printf("%d\n",result);
+        return 0;
+}
