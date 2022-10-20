@@ -1,0 +1,53 @@
+#include <stdio.h>
+int stack[1000001];
+int top=-1;
+int ibun(int key)
+{
+        int s=0,l=top;
+        int mid;
+        while(s<=l)
+        {
+                mid=(s+l)/2;
+                if(stack[mid]>=key)
+                {
+                        l=mid-1;
+                }
+                else
+                {
+                        s=mid+1;
+                }
+        }
+        return l;
+}
+int main(void)
+{
+        int N,arr[1000001];
+        int big=0,i,j;//가장 긴 수열
+        scanf("%d",&N);
+        for(i=0;i<N;i++)
+        {
+                scanf("%d",&arr[i]);
+        }
+        int temp;
+        stack[0]=arr[0];
+        top++;
+        for(i=1;i<N;i++)
+        {
+                if(arr[i]>stack[top])
+                {
+                        stack[++top]=arr[i];
+                }
+                else if(arr[i]==stack[top])
+                {
+                        continue;
+                }
+                else
+                {
+                        temp=ibun(arr[i]);
+                        stack[temp+1]=arr[i];
+                }
+                if(top>big)
+                        big=top;
+        }
+        printf("%d",big+1);
+}
